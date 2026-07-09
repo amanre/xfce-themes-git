@@ -1,7 +1,7 @@
 
 pkgname=xfce-themes-git
 pkgver=26.07
-pkgrel=03
+pkgrel=04
 pkgdesc="XFCE desktop themes configurations "
 arch=('any')
 license=('GPL3')
