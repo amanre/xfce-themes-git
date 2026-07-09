@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-## Copyright (C) 2020-2024 Aditya Shakya <adi1090x@gmail.com>
-##
-## Script To Apply Themes
-
 ## Theme ------------------------------------
 THEME="$1"
 THEME_FILE="$HOME/.config/xfce-themes/${THEME}.bash"
@@ -24,6 +20,7 @@ fi
 PATH_CONF="$HOME/.config"
 PATH_GEANY="$PATH_CONF/geany"
 PATH_XFCE="$PATH_CONF/xfce4/terminal"
+PATH_CONF="$HOME/.local/share/xfce4-panel-profiles"
 
 ## wallpaper --------------------------------
 apply_wallpaper() {
@@ -34,11 +31,12 @@ apply_wallpaper() {
 
 ## xfce terminal ----------------------------
 apply_terminal() {
-	xfconf-query -c xfce4-terminal -p /font-name -s "$terminal_font_name $terminal_font_size"
-	xfconf-query -c xfce4-terminal -p /color-background -s "$background"
-	xfconf-query -c xfce4-terminal -p /color-foreground -s "$foreground"
-	xfconf-query -c xfce4-terminal -p /color-cursor -s "$foreground"
-	xfconf-query -c xfce4-terminal -p /color-palette -s "${color0};${color1};${color2};${color3};${color4};${color5};${color6};${color7};${color8};${color9};${color10};${color11};${color12};${color13};${color14};${color15}"
+	sed -i ${PATH_XFCE}/terminalrc \
+		-e "s/FontName=.*/FontName=$terminal_font_name $terminal_font_size/g" \
+		-e "s/ColorBackground=.*/ColorBackground=${background}/g" \
+		-e "s/ColorForeground=.*/ColorForeground=${foreground}/g" \
+		-e "s/ColorCursor=.*/ColorCursor=${foreground}/g" \
+		-e "s/ColorPalette=.*/ColorPalette=${color0};${color1};${color2};${color3};${color4};${color5};${color6};${color7};${color8};${color9};${color10};${color11};${color12};${color13};${color14};${color15}/g"
 }
 
 ## geany ------------------------------------
@@ -72,8 +70,11 @@ create_file() {
 
 ## notify -----------------------------------
 notify_user() {
-	notify-send -u normal -h string:x-dunst-stack-tag:applytheme -i /usr/share/icons/Archcraft/actions/24/channelmixer.svg "Applying Style : ${THEME^}"
+	notify-send -u normal -h string:x-dunst-stack-tag:applytheme -i /usr/share/icons/AmOs/actions/24/channelmixer.svg "Applying Style : ${THEME^}"
 }
+
+## Paste settings in funct (PLANK)
+change_dock && cat "$HOME"/.cache/plank.conf | dconf load /net/launchpad/plank/docks/
 
 ## Execute Script ---------------------------
 notify_user
