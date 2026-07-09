@@ -1,8 +1,8 @@
 # Wallpaper
-wallpaper='/usr/share/backgrounds/walls/the-sphere.png'
+wallpaper='/usr/share/backgrounds/walls/the-sphere.jpg'
 
 # Terminal
-wal -i /usr/share/backgrounds/walls/the-sphere.png
+wal -i /usr/share/backgrounds/walls/the-sphere.jpg
 /usr/share/amos/pywal-conky/refresh_conky.sh
 terminal_font_name='Hack Bold '
 terminal_font_size='10'
