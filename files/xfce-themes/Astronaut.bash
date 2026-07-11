@@ -26,7 +26,7 @@ change_dock() {
 		position='bottom'
 		pressure-reveal=false
 		show-dock-item=false
-		theme='Everforest-Dark_BL'
+		theme='#Window-Rust_FadeOut'
 		tooltips-enabled=true
 		unhide-delay=0
 		zoom-enabled=true
