@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-destination="/home/amanre/Amanre-Github/amanre_repo/x86_64/"
+destination="/home/amanre/Amanre-Github/custom-repo/x86_64/"
 
 			makepkg -f
 
